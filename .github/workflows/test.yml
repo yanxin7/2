@@ -1,0 +1,30 @@
+name: Print Hello Test
+
+on:
+  workflow_dispatch:  # 支持手动触发
+
+jobs:
+  test-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 检出代码仓库
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 设置 Python 环境
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+
+      # 运行测试脚本
+      - name: Run Hello Script
+        run: |
+          echo "print('hello')" > test.py  # 创建 Python 脚本
+          python test.py                   # 运行 Python 脚本
+
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
